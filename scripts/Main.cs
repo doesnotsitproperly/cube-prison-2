@@ -19,7 +19,11 @@ public class Main : Spatial {
 
         roomOrigins[0] = Vector3.Zero;
         Spatial firstDoorway = doorwayScene.Instance<Spatial>();
-        firstDoorway.Translation = new Vector3(roomOrigins[0].x, roomOrigins[0].y, roomOrigins[0].z - 17f);
+        firstDoorway.Translation = new Vector3(
+            roomOrigins[0].x,
+            roomOrigins[0].y,
+            roomOrigins[0].z - 17f
+        );
         walls.Add(new Vector2(firstDoorway.Translation.x, firstDoorway.Translation.z));
         AddChild(firstDoorway);
         PlaceWalls(wallScene, roomOrigins[0]);
@@ -38,7 +42,11 @@ public class Main : Spatial {
 
                     translation.x -= 34f;
 
-                    doorway.Translation = new Vector3(translation.x + 17f, translation.y, translation.z);
+                    doorway.Translation = new Vector3(
+                        translation.x + 17f,
+                        translation.y,
+                        translation.z
+                    );
                     doorway.RotationDegrees = new Vector3(0f, 90f, 0f);
                     walls.Add(new Vector2(doorway.Translation.x, doorway.Translation.z));
 
@@ -49,7 +57,11 @@ public class Main : Spatial {
 
                     translation.x += 34f;
 
-                    doorway.Translation = new Vector3(translation.x - 17f, translation.y, translation.z);
+                    doorway.Translation = new Vector3(
+                        translation.x - 17f,
+                        translation.y,
+                        translation.z
+                    );
                     doorway.RotationDegrees = new Vector3(0f, 90f, 0f);
                     walls.Add(new Vector2(doorway.Translation.x, doorway.Translation.z));
 
@@ -61,7 +73,11 @@ public class Main : Spatial {
 
                 translation.z -= 34f;
 
-                doorway.Translation = new Vector3(translation.x, translation.y, translation.z + 17f);
+                doorway.Translation = new Vector3(
+                    translation.x,
+                    translation.y,
+                    translation.z + 17f
+                );
                 walls.Add(new Vector2(doorway.Translation.x, doorway.Translation.z));
 
                 PlaceWalls(wallScene, room.Translation);
@@ -76,8 +92,14 @@ public class Main : Spatial {
 
         PlaceWalls(wallScene, roomOrigins[7]);
 
-        Spatial button = ResourceLoader.Load<PackedScene>("res://scenes/button.tscn").Instance<Spatial>();
-        button.Translation = new Vector3(roomOrigins[7].x, roomOrigins[7].y + 5f, roomOrigins[7].z - 16.1f);
+        Spatial button = ResourceLoader
+            .Load<PackedScene>("res://scenes/button.tscn")
+            .Instance<Spatial>();
+        button.Translation = new Vector3(
+            roomOrigins[7].x,
+            roomOrigins[7].y + 5f,
+            roomOrigins[7].z - 16.1f
+        );
         AddChild(button);
     }
 
