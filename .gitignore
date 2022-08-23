@@ -1,4 +1,5 @@
 .import/
 .mono/
+builds/
 obj/
 export_presets.cfg
