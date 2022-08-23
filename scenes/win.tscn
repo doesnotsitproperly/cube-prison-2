@@ -14,9 +14,15 @@ autoplay = true
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
 
-[node name="Label" type="Label" parent="."]
-margin_right = 42.0
-margin_bottom = 13.0
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+follow_viewport_enable = true
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+margin_left = -126.0
+margin_top = -39.0
+margin_right = -84.0
+margin_bottom = -26.0
+rect_scale = Vector2( 6, 6 )
 custom_fonts/font = ExtResource( 2 )
 text = "YOU WIN"
 align = 1
