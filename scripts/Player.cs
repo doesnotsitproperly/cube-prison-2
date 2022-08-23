@@ -42,6 +42,7 @@ public class Player : KinematicBody {
         velocity.x = Input.GetActionStrength("right") - Input.GetActionStrength("left");
         velocity.z = Input.GetActionStrength("backward") - Input.GetActionStrength("forward");
 
+        velocity = velocity.Rotated(Vector3.Up, Rotation.y);
         velocity = velocity.Normalized() * Speed;
         velocity = MoveAndSlide(velocity, Vector3.Up);
     }
