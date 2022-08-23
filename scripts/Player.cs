@@ -54,15 +54,11 @@ public class Player : KinematicBody {
             RotateY(-mouseMotion.Relative.x * MouseSensitivity);
             pivot.RotateX(-mouseMotion.Relative.y * MouseSensitivity);
 
-            ClampX(pivot.Rotation, -1.2f, 1.2f);
-        }
-    }
-
-    private void ClampX(Vector3 vector, Single min, Single max) {
-        if (vector.x > max) {
-            vector = new Vector3(max, vector.y, vector.z);
-        } else if (vector.x < min) {
-            vector = new Vector3(min, vector.y, vector.z);
+            pivot.Rotation = new Vector3(
+                Mathf.Clamp(pivot.Rotation.x, -1.2f, 1.2f),
+                pivot.Rotation.y,
+                pivot.Rotation.z
+            );
         }
     }
 }
