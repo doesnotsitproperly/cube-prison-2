@@ -75,6 +75,10 @@ public class Main : Spatial {
         }
 
         PlaceWalls(wallScene, roomOrigins[7]);
+
+        Spatial button = ResourceLoader.Load<PackedScene>("res://scenes/button.tscn").Instance<Spatial>();
+        button.Translation = new Vector3(roomOrigins[7].x, roomOrigins[7].y + 5f, roomOrigins[7].z - 16.1f);
+        AddChild(button);
     }
 
     private void PlaceWalls(PackedScene wall, Vector3 position) {

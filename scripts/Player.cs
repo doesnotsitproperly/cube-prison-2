@@ -2,15 +2,15 @@ using Godot;
 using System;
 
 public class Player : KinematicBody {
-    [Export]
-    public Int32 Speed;
-    [Export]
-    public Single MouseSensitivity;
+    [Export] public Int32 Speed;
+    [Export] public Single MouseSensitivity;
 
+    private RayCast rayCast;
     private Spatial pivot;
     private Vector3 velocity;
 
     public override void _Ready() {
+        rayCast = GetNode<RayCast>("Pivot/Camera/RayCast");
         pivot = GetNode<Spatial>("Pivot");
         velocity = new Vector3();
 
@@ -23,6 +23,13 @@ public class Player : KinematicBody {
                 Input.MouseMode = Input.MouseModeEnum.Visible;
             } else {
                 Input.MouseMode = Input.MouseModeEnum.Captured;
+            }
+        }
+
+        if (Input.IsActionJustPressed("interact")) {
+            Node node = (Node) rayCast.GetCollider();
+            if (node.Name == "Button") {
+                GetTree().Notification(NotificationWmQuitRequest);
             }
         }
     }
