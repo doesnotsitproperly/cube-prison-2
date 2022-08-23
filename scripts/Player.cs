@@ -30,7 +30,7 @@ public class Player : KinematicBody {
             Node node = (Node) rayCast.GetCollider();
             if (node != null) {
                 if (node.Name == "Button") {
-                    GetTree().Notification(NotificationWmQuitRequest);
+                    GetTree().ChangeScene("res://scenes/win.tscn");
                 }
             }
         }
