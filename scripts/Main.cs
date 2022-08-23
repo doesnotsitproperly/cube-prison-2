@@ -8,6 +8,8 @@ public class Main : Spatial {
     private Vector3[] roomOrigins = new Vector3[8];
 
     public override void _Ready() {
+        OS.WindowMaximized = true;
+
         PackedScene[] roomScenes = new PackedScene[] {
             ResourceLoader.Load<PackedScene>("res://scenes/rooms/three_room.tscn"),
             ResourceLoader.Load<PackedScene>("res://scenes/rooms/four_room.tscn"),
