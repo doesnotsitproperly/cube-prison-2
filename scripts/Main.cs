@@ -19,7 +19,7 @@ public class Main : Spatial {
 
         roomOrigins[0] = Vector3.Zero;
         Spatial firstDoorway = doorwayScene.Instance<Spatial>();
-        firstDoorway.Translation = new Vector3(roomOrigins[0].x, roomOrigins[0].y, roomOrigins[0].z - 17);
+        firstDoorway.Translation = new Vector3(roomOrigins[0].x, roomOrigins[0].y, roomOrigins[0].z - 17f);
         walls.Add(new Vector2(firstDoorway.Translation.x, firstDoorway.Translation.z));
         AddChild(firstDoorway);
         PlaceWalls(wallScene, roomOrigins[0]);
@@ -36,9 +36,9 @@ public class Main : Spatial {
                     // Place left
                     direction = Direction.Left;
 
-                    translation.x -= 34;
+                    translation.x -= 34f;
 
-                    doorway.Translation = new Vector3(translation.x + 17, translation.y, translation.z);
+                    doorway.Translation = new Vector3(translation.x + 17f, translation.y, translation.z);
                     doorway.RotationDegrees = new Vector3(0f, 90f, 0f);
                     walls.Add(new Vector2(doorway.Translation.x, doorway.Translation.z));
 
@@ -47,9 +47,9 @@ public class Main : Spatial {
                     // Place right
                     direction = Direction.Right;
 
-                    translation.x += 34;
+                    translation.x += 34f;
 
-                    doorway.Translation = new Vector3(translation.x - 17, translation.y, translation.z);
+                    doorway.Translation = new Vector3(translation.x - 17f, translation.y, translation.z);
                     doorway.RotationDegrees = new Vector3(0f, 90f, 0f);
                     walls.Add(new Vector2(doorway.Translation.x, doorway.Translation.z));
 
@@ -59,9 +59,9 @@ public class Main : Spatial {
                 // Place forward
                 direction = Direction.Forward;
 
-                translation.z -= 34;
+                translation.z -= 34f;
 
-                doorway.Translation = new Vector3(translation.x, translation.y, translation.z + 17);
+                doorway.Translation = new Vector3(translation.x, translation.y, translation.z + 17f);
                 walls.Add(new Vector2(doorway.Translation.x, doorway.Translation.z));
 
                 PlaceWalls(wallScene, room.Translation);
@@ -85,25 +85,25 @@ public class Main : Spatial {
         // Front wall
         PlaceWall(
             wall,
-            new Vector3(position.x, position.y + 9, position.z - 17),
+            new Vector3(position.x, position.y + 9f, position.z - 17f),
             new Vector3(90f, 0f, 0f)
         );
         // Back wall
         PlaceWall(
             wall,
-            new Vector3(position.x, position.y + 9, position.z + 17),
+            new Vector3(position.x, position.y + 9f, position.z + 17f),
             new Vector3(90f, 0f, 0f)
         );
         // Left wall
         PlaceWall(
             wall,
-            new Vector3(position.x - 17, position.y + 9, position.z),
+            new Vector3(position.x - 17f, position.y + 9f, position.z),
             new Vector3(90f, 90f, 0f)
         );
         // Right wall
         PlaceWall(
             wall,
-            new Vector3(position.x + 17, position.y + 9, position.z),
+            new Vector3(position.x + 17f, position.y + 9f, position.z),
             new Vector3(90f, 90f, 0f)
         );
     }
