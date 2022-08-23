@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://scripts/Main.cs" type="Script" id=1]
 [ext_resource path="res://scenes/player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/black_square.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scenes/gui.tscn" type="PackedScene" id=4]
 
 [node name="Main" type="Spatial"]
 script = ExtResource( 1 )
@@ -16,3 +17,5 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0 )
 
 [node name="BlackSquare2" parent="InitialRoom" instance=ExtResource( 3 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 18, 0 )
+
+[node name="GUI" parent="." instance=ExtResource( 4 )]

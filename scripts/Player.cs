@@ -5,12 +5,16 @@ public class Player : KinematicBody {
     [Export] public Int32 Speed;
     [Export] public Single MouseSensitivity;
 
+    private ColorRect healthMeter;
     private RayCast rayCast;
+    private Single health;
     private Spatial pivot;
     private Vector3 velocity;
 
     public override void _Ready() {
+        healthMeter = GetNode<ColorRect>("../GUI/Health");
         rayCast = GetNode<RayCast>("Pivot/Camera/RayCast");
+        health = 1f;
         pivot = GetNode<Spatial>("Pivot");
         velocity = new Vector3();
 
@@ -18,6 +22,10 @@ public class Player : KinematicBody {
     }
 
     public override void _Process(Single delta) {
+        healthMeter.RectScale = new Vector2(health, 1f);
+    }
+
+    public override void _PhysicsProcess(Single delta) {
         if (Input.IsActionJustPressed("quit")) {
             if (Input.MouseMode == Input.MouseModeEnum.Captured) {
                 Input.MouseMode = Input.MouseModeEnum.Visible;
@@ -34,9 +42,7 @@ public class Player : KinematicBody {
                 }
             }
         }
-    }
 
-    public override void _PhysicsProcess(Single delta) {
         velocity = new Vector3();
 
         velocity.x = Input.GetActionStrength("right") - Input.GetActionStrength("left");
