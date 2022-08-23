@@ -28,8 +28,10 @@ public class Player : KinematicBody {
 
         if (Input.IsActionJustPressed("interact")) {
             Node node = (Node) rayCast.GetCollider();
-            if (node.Name == "Button") {
-                GetTree().Notification(NotificationWmQuitRequest);
+            if (node != null) {
+                if (node.Name == "Button") {
+                    GetTree().Notification(NotificationWmQuitRequest);
+                }
             }
         }
     }

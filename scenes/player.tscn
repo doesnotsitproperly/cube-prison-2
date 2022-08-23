@@ -22,3 +22,7 @@ current = true
 [node name="RayCast" type="RayCast" parent="Pivot/Camera"]
 enabled = true
 cast_to = Vector3( 0, 0, -5 )
+
+[node name="SpotLight" type="SpotLight" parent="Pivot/Camera"]
+spot_range = 25.0
+spot_angle = 30.0
