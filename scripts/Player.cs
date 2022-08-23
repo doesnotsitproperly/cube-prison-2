@@ -9,14 +9,12 @@ public class Player : KinematicBody {
     private RayCast rayCast;
     private Single health;
     private Spatial pivot;
-    private Vector3 velocity;
 
     public override void _Ready() {
         healthMeter = GetNode<ColorRect>("../GUI/Health");
         rayCast = GetNode<RayCast>("Pivot/Camera/RayCast");
         health = 1f;
         pivot = GetNode<Spatial>("Pivot");
-        velocity = new Vector3();
 
         Input.MouseMode = Input.MouseModeEnum.Captured;
     }
@@ -43,7 +41,7 @@ public class Player : KinematicBody {
             }
         }
 
-        velocity = new Vector3();
+        Vector3 velocity = new Vector3();
 
         velocity.x = Input.GetActionStrength("right") - Input.GetActionStrength("left");
         velocity.z = Input.GetActionStrength("backward") - Input.GetActionStrength("forward");
