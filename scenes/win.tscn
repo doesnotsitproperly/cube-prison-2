@@ -12,15 +12,11 @@ stream = ExtResource( 3 )
 autoplay = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
-scale = Vector2( 1, 1 )
 current = true
 
 [node name="Label" type="Label" parent="."]
-margin_left = -180.0
-margin_top = -42.0
-margin_right = -120.0
-margin_bottom = -28.0
-rect_scale = Vector2( 6, 6 )
+margin_right = 42.0
+margin_bottom = 13.0
 custom_fonts/font = ExtResource( 2 )
 text = "YOU WIN"
 align = 1
