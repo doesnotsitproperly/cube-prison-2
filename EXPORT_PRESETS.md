@@ -1,0 +1,10 @@
+- Linux/X11
+    - 64 Bits: ❌
+- Linux/X11 64 Bits
+    - 64 Bits: ✅
+- Windows Desktop
+    - 64 Bits: ❌
+    - Icon: res://images/icon.ico
+- Windows Desktop 64 Bits
+    - 64 Bits: ✅
+    - Icon: res://images/icon.ico
