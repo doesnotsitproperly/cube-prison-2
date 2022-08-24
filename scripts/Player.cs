@@ -3,7 +3,8 @@ using System;
 
 public class Player : KinematicBody {
     [Export] public Int32 Speed;
-    [Export] public Single MouseSensitivity;
+    [Export] public Single JoystickCameraSensitivity;
+    [Export] public Single MouseCameraSensitivity;
 
     private ColorRect healthMeter;
     private RayCast rayCast;
@@ -49,20 +50,31 @@ public class Player : KinematicBody {
         velocity = velocity.Rotated(Vector3.Up, Rotation.y);
         velocity = velocity.Normalized() * Speed;
         velocity = MoveAndSlide(velocity, Vector3.Up);
+
+        MoveCamera(
+            -(Input.GetActionRawStrength("camera_down") - Input.GetActionStrength("camera_up")) * JoystickCameraSensitivity,
+            -(Input.GetActionStrength("camera_right") - Input.GetActionStrength("camera_left")) * JoystickCameraSensitivity
+        );
     }
 
     public override void _UnhandledInput(InputEvent @event) {
         if (@event is InputEventMouseMotion && Input.MouseMode == Input.MouseModeEnum.Captured) {
             InputEventMouseMotion mouseMotion = (InputEventMouseMotion) @event;
-
-            RotateY(-mouseMotion.Relative.x * MouseSensitivity);
-            pivot.RotateX(-mouseMotion.Relative.y * MouseSensitivity);
-
-            pivot.Rotation = new Vector3(
-                Mathf.Clamp(pivot.Rotation.x, -1.2f, 1.2f),
-                pivot.Rotation.y,
-                pivot.Rotation.z
+            MoveCamera(
+                -mouseMotion.Relative.y * MouseCameraSensitivity,
+                -mouseMotion.Relative.x * MouseCameraSensitivity
             );
         }
+    }
+
+    public void MoveCamera(Single xRotation, Single yRotation) {
+        RotateY(yRotation);
+        pivot.RotateX(xRotation);
+
+        pivot.Rotation = new Vector3(
+            Mathf.Clamp(pivot.Rotation.x, -1.2f, 1.2f),
+            pivot.Rotation.y,
+            pivot.Rotation.z
+        );
     }
 }
