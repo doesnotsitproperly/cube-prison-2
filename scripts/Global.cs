@@ -3,6 +3,7 @@ using System;
 
 public class Global : Node {
     public override void _Ready() {
+        OS.WindowMaximized = true;
         GD.Randomize();
     }
 
