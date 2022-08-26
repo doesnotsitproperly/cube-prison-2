@@ -3,7 +3,7 @@
 [ext_resource path="res://scripts/Main.cs" type="Script" id=1]
 [ext_resource path="res://scenes/player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/black_square.tscn" type="PackedScene" id=3]
-[ext_resource path="res://scenes/gui.tscn" type="PackedScene" id=4]
+[ext_resource path="res://images/touch_button.png" type="Texture" id=5]
 
 [node name="Main" type="Spatial"]
 script = ExtResource( 1 )
@@ -18,4 +18,47 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0 )
 [node name="BlackSquare2" parent="InitialRoom" instance=ExtResource( 3 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 18, 0 )
 
-[node name="GUI" parent="." instance=ExtResource( 4 )]
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="HealthBackground" type="ColorRect" parent="CanvasLayer"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -215.0
+margin_top = -50.0
+margin_right = 215.0
+margin_bottom = -10.0
+color = Color( 0.101961, 0.109804, 0.172549, 1 )
+
+[node name="Health" type="ColorRect" parent="CanvasLayer"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -215.0
+margin_top = -50.0
+margin_right = 215.0
+margin_bottom = -10.0
+color = Color( 0.694118, 0.243137, 0.32549, 1 )
+
+[node name="TouchScreenButtons" type="Node2D" parent="CanvasLayer"]
+visible = false
+position = Vector2( 150, 450 )
+scale = Vector2( 15, 15 )
+
+[node name="TouchScreenButtonUp" type="TouchScreenButton" parent="CanvasLayer/TouchScreenButtons"]
+position = Vector2( 0, -8 )
+normal = ExtResource( 5 )
+
+[node name="TouchScreenButtonDown" type="TouchScreenButton" parent="CanvasLayer/TouchScreenButtons"]
+position = Vector2( 0, 8 )
+normal = ExtResource( 5 )
+
+[node name="TouchScreenButtonLeft" type="TouchScreenButton" parent="CanvasLayer/TouchScreenButtons"]
+position = Vector2( -8, 0 )
+normal = ExtResource( 5 )
+
+[node name="TouchScreenButtonRight" type="TouchScreenButton" parent="CanvasLayer/TouchScreenButtons"]
+position = Vector2( 8, 0 )
+normal = ExtResource( 5 )

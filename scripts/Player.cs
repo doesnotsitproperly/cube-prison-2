@@ -11,11 +11,21 @@ public class Player : KinematicBody {
     private Single health;
     private Spatial pivot;
 
+    private TouchScreenButton upButton;
+    private TouchScreenButton downButton;
+    private TouchScreenButton leftButton;
+    private TouchScreenButton rightButton;
+
     public override void _Ready() {
-        healthMeter = GetNode<ColorRect>("../GUI/Health");
+        healthMeter = GetNode<ColorRect>("../CanvasLayer/Health");
         rayCast = GetNode<RayCast>("Pivot/Camera/RayCast");
         health = 1f;
         pivot = GetNode<Spatial>("Pivot");
+
+        upButton = GetNode<TouchScreenButton>("../CanvasLayer/TouchScreenButtons/TouchScreenButtonUp");
+        downButton = GetNode<TouchScreenButton>("../CanvasLayer/TouchScreenButtons/TouchScreenButtonDown");
+        leftButton = GetNode<TouchScreenButton>("../CanvasLayer/TouchScreenButtons/TouchScreenButtonLeft");
+        rightButton = GetNode<TouchScreenButton>("../CanvasLayer/TouchScreenButtons/TouchScreenButtonRight");
 
         Input.MouseMode = Input.MouseModeEnum.Captured;
     }
@@ -46,6 +56,19 @@ public class Player : KinematicBody {
 
         velocity.x = Input.GetActionStrength("right") - Input.GetActionStrength("left");
         velocity.z = Input.GetActionStrength("backward") - Input.GetActionStrength("forward");
+
+        if (upButton.IsPressed()) {
+            velocity.z--;
+        }
+        if (downButton.IsPressed()) {
+            velocity.z++;
+        }
+        if (leftButton.IsPressed()) {
+            velocity.x--;
+        }
+        if (rightButton.IsPressed()) {
+            velocity.x++;
+        }
 
         velocity = velocity.Rotated(Vector3.Up, Rotation.y);
         velocity = velocity.Normalized() * Speed;
