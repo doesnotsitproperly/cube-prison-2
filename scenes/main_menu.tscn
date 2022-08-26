@@ -29,7 +29,7 @@ text = "Cube Prison 2"
 align = 1
 valign = 1
 
-[node name="Button" type="Button" parent="."]
+[node name="StartButton" type="Button" parent="."]
 margin_left = -52.5
 margin_top = -4.0
 margin_right = -17.5
@@ -38,4 +38,24 @@ rect_scale = Vector2( 3, 3 )
 theme = ExtResource( 3 )
 text = "Start"
 
-[connection signal="pressed" from="Button" to="." method="OnButtonPressed"]
+[node name="LicensesButton" type="Button" parent="."]
+margin_left = -82.5
+margin_top = 108.0
+margin_right = -27.5
+margin_bottom = 128.0
+rect_scale = Vector2( 3, 3 )
+theme = ExtResource( 3 )
+text = "Licenses"
+
+[node name="ExitButton" type="Button" parent="."]
+margin_left = -45.0
+margin_top = 211.0
+margin_right = -15.0
+margin_bottom = 231.0
+rect_scale = Vector2( 3, 3 )
+theme = ExtResource( 3 )
+text = "Exit"
+
+[connection signal="pressed" from="StartButton" to="." method="OnStartButtonPressed"]
+[connection signal="pressed" from="LicensesButton" to="." method="OnLicensesButtonPressed"]
+[connection signal="pressed" from="ExitButton" to="." method="OnExitButtonPressed"]
