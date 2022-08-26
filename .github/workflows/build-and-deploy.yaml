@@ -9,7 +9,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - run: pwsh html5_build.ps1
+      - run: pwsh build.ps1
 
       # - uses: JamesIves/github-pages-deploy-action@v4.4.0
       #   with:

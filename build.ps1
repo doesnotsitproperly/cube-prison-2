@@ -1,63 +1,28 @@
 #!/usr/bin/env pwsh
 
-$buildsDir = Join-Path $PSScriptRoot "builds"
+$buildDir = Join-Path $PSScriptRoot "build"
 
-# Linux/X11
+$templatesTpz = Join-Path $PSScriptRoot "templates.tpz"
+$templatesDir = Join-Path $PSScriptRoot "templates"
 
-$buildDir = Join-Path $buildsDir "linux_x11"
-$executable = Join-Path $buildDir "CubePrison2.x86"
-$log = Join-Path $buildDir "log.txt"
+$godotZip = Join-Path $PSScriptRoot "godot.zip"
+$godotDir = Join-Path $PSScriptRoot "godot"
 
-if (Test-Path $buildDir) {
-    Remove-Item $buildDir -Recurse
-}
+# Get export templates
+
+Invoke-WebRequest "https://github.com/godotengine/godot/releases/download/3.5-stable/Godot_v3.5-stable_mono_export_templates.tpz" -OutFile $templatesTpz
+Expand-Archive $templatesTpz -DestinationPath $templatesDir
+
+Copy-Item (Join-Path $templatesDir "templates" "webassembly_debug.zip") -Destination "/home/runner/.local/share/godot/templates/3.5.stable.mono/"
+Copy-Item (Join-Path $templatesDir "templates" "webassembly_release.zip") -Destination "/home/runner/.local/share/godot/templates/3.5.stable.mono/"
+
+# Build
+
+Invoke-WebRequest "https://github.com/godotengine/godot/releases/download/3.5-stable/Godot_v3.5-stable_mono_linux_headless_64.zip" -OutFile $godotZip
+Expand-Archive $godotZip -DestinationPath $godotDir
+
 New-Item $buildDir -ItemType "directory" | Out-Null
 
-Write-Output "Creating `"Linux/X11`"               export at ${buildDir}"
+Rename-Item (JOin-Path $PSScriptRoot "html5_export.cfg") -NewName "export_presets.cfg"
 
-godot --no-window --export "Linux/X11" $executable | Out-File $log
-
-# Linux/X11 64 Bits
-
-$buildDir = Join-Path $buildsDir "linux_x11_64_bits"
-$executable = Join-Path $buildDir "CubePrison2.x86_64"
-$log = Join-Path $buildDir "log.txt"
-
-if (Test-Path $buildDir) {
-    Remove-Item $buildDir -Recurse
-}
-New-Item $buildDir -ItemType "directory" | Out-Null
-
-Write-Output "Creating `"Linux/X11 64 Bits`"       export at ${buildDir}"
-
-godot --no-window --export "Linux/X11 64 Bits" $executable | Out-File $log
-
-# Windows Desktop
-
-$buildDir = Join-Path $buildsDir "windows_desktop"
-$executable = Join-Path $buildDir "CubePrison2.exe"
-$log = Join-Path $buildDir "log.txt"
-
-if (Test-Path $buildDir) {
-    Remove-Item $buildDir -Recurse
-}
-New-Item $buildDir -ItemType "directory" | Out-Null
-
-Write-Output "Creating `"Windows Desktop`"         export at ${buildDir}"
-
-godot --no-window --export "Windows Desktop" $executable | Out-File $log
-
-# Windows Desktop 64 Bits
-
-$buildDir = Join-Path $buildsDir "windows_desktop_64_bits"
-$executable = Join-Path $buildDir "CubePrison2.exe"
-$log = Join-Path $buildDir "log.txt"
-
-if (Test-Path $buildDir) {
-    Remove-Item $buildDir -Recurse
-}
-New-Item $buildDir -ItemType "directory" | Out-Null
-
-Write-Output "Creating `"Windows Desktop 64 Bits`" export at ${buildDir}"
-
-godot --no-window --export "Windows Desktop 64 Bits" $executable | Out-File $log
+./godot/Godot_v3.5-stable_mono_linux_headless_64/Godot_v3.5-stable_mono_linux_headless.64 --no-window --export "HTML5" (Join-Path $buildDir "index.html")
