@@ -8,6 +8,10 @@ $templatesDir = Join-Path $PSScriptRoot "templates"
 $godotZip = Join-Path $PSScriptRoot "godot.zip"
 $godotDir = Join-Path $PSScriptRoot "godot"
 
+cd ~
+Write-Output (Get-Location)
+
+<#
 # Get export templates
 
 Invoke-WebRequest "https://github.com/godotengine/godot/releases/download/3.5-stable/Godot_v3.5-stable_mono_export_templates.tpz" -OutFile $templatesTpz
@@ -26,3 +30,4 @@ New-Item $buildDir -ItemType "directory" | Out-Null
 Rename-Item (JOin-Path $PSScriptRoot "html5_export.cfg") -NewName "export_presets.cfg"
 
 ./godot/Godot_v3.5-stable_mono_linux_headless_64/Godot_v3.5-stable_mono_linux_headless.64 --no-window --export "HTML5" (Join-Path $buildDir "index.html")
+#>
