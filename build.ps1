@@ -5,6 +5,8 @@ $buildDir = Join-Path $PSScriptRoot "build"
 $templatesTpz = Join-Path $PSScriptRoot "templates.tpz"
 $templatesDir = Join-Path $PSScriptRoot "templates"
 
+$godotTemplatesPath = "~/.local/share/godot/templates/3.5.stable.mono/"
+
 $godotZip = Join-Path $PSScriptRoot "godot.zip"
 $godotDir = Join-Path $PSScriptRoot "godot"
 
@@ -13,8 +15,10 @@ $godotDir = Join-Path $PSScriptRoot "godot"
 Invoke-WebRequest "https://github.com/godotengine/godot/releases/download/3.5-stable/Godot_v3.5-stable_mono_export_templates.tpz" -OutFile $templatesTpz
 Expand-Archive $templatesTpz -DestinationPath $templatesDir
 
-Copy-Item (Join-Path $templatesDir "templates" "webassembly_debug.zip") -Destination "~/.local/share/godot/templates/3.5.stable.mono/"
-Copy-Item (Join-Path $templatesDir "templates" "webassembly_release.zip") -Destination "~/.local/share/godot/templates/3.5.stable.mono/"
+New-Item $godotTemplatesPath -ItemType "directory" | Out-Null
+
+Copy-Item (Join-Path $templatesDir "templates" "webassembly_debug.zip") -Destination $godotTemplatesPath
+Copy-Item (Join-Path $templatesDir "templates" "webassembly_release.zip") -Destination $godotTemplatesPath
 
 # Build
 
