@@ -2,7 +2,7 @@
 
 [ext_resource path="res://scripts/Win.cs" type="Script" id=1]
 [ext_resource path="res://resources/monogram.tres" type="DynamicFont" id=2]
-[ext_resource path="res://audios/jingle.wav" type="AudioStream" id=3]
+[ext_resource path="res://audios/jingle.ogg" type="AudioStream" id=3]
 
 [node name="Win" type="Node2D"]
 script = ExtResource( 1 )
