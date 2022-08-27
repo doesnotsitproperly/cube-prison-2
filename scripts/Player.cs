@@ -75,7 +75,7 @@ public class Player : KinematicBody {
         velocity = MoveAndSlide(velocity, Vector3.Up);
 
         MoveCamera(
-            -(Input.GetActionRawStrength("camera_down") - Input.GetActionStrength("camera_up")) * JoystickCameraSensitivity,
+            -(Input.GetActionStrength("camera_down") - Input.GetActionStrength("camera_up")) * JoystickCameraSensitivity,
             -(Input.GetActionStrength("camera_right") - Input.GetActionStrength("camera_left")) * JoystickCameraSensitivity
         );
     }
