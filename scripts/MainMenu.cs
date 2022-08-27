@@ -23,13 +23,9 @@ public class MainMenu : Node2D {
     }
 
     public void OnLicensesButtonPressed() {
-        if (OS.GetName() == "HTML5") {
+        Error error = OS.ShellOpen(OS.GetExecutablePath().GetBaseDir() + "/THIRD_PARTY_LICENSES.txt");
+        if (error != Error.Ok) {
             OS.ShellOpen("https://github.com/doesnotsitproperly/cube-prison-2/blob/main/THIRD_PARTY_LICENSES.txt");
-        } else {
-            Error error = OS.ShellOpen(OS.GetExecutablePath().GetBaseDir() + "/THIRD_PARTY_LICENSES.txt");
-            if (error != Error.Ok) {
-                OS.ShellOpen("https://github.com/doesnotsitproperly/cube-prison-2/blob/main/THIRD_PARTY_LICENSES.txt");
-            }
         }
     }
 
