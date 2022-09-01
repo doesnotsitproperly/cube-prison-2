@@ -2,12 +2,14 @@ using Godot;
 using System;
 using System.Collections.Generic;
 
-public class Main : Spatial {
+public class Main : Spatial
+{
     private Direction direction = Direction.Left;
     private List<Vector2> walls = new List<Vector2>();
     private Vector3[] roomOrigins = new Vector3[8];
 
-    public override void _Ready() {
+    public override void _Ready()
+    {
         PackedScene[] roomScenes = new PackedScene[] {
             ResourceLoader.Load<PackedScene>("res://scenes/rooms/three_room.tscn"),
             ResourceLoader.Load<PackedScene>("res://scenes/rooms/four_room.tscn"),
@@ -28,15 +30,18 @@ public class Main : Spatial {
         AddChild(firstDoorway);
         PlaceWalls(wallScene, roomOrigins[0]);
 
-        for (Byte i = 1; i <= 7; i++) {
+        for (Byte i = 1; i <= 7; i++)
+        {
             Spatial room = roomScenes[GD.Randi() % roomScenes.Length].Instance<Spatial>();
             room.Translation = roomOrigins[i - 1];
 
             Spatial doorway = doorwayScene.Instance<Spatial>();
 
             Vector3 translation = room.Translation;
-            if (direction == Direction.Forward) {
-                if (GD.Randi() % 2 == 0) {
+            if (direction == Direction.Forward)
+            {
+                if (GD.Randi() % 2 == 0)
+                {
                     // Place left
                     direction = Direction.Left;
 
@@ -51,7 +56,9 @@ public class Main : Spatial {
                     walls.Add(new Vector2(doorway.Translation.x, doorway.Translation.z));
 
                     PlaceWalls(wallScene, room.Translation);
-                } else {
+                }
+                else
+                {
                     // Place right
                     direction = Direction.Right;
 
@@ -67,7 +74,9 @@ public class Main : Spatial {
 
                     PlaceWalls(wallScene, room.Translation);
                 }
-            } else {
+            }
+            else
+            {
                 // Place forward
                 direction = Direction.Forward;
 
@@ -103,7 +112,8 @@ public class Main : Spatial {
         AddChild(button);
     }
 
-    private void PlaceWalls(PackedScene wall, Vector3 position) {
+    private void PlaceWalls(PackedScene wall, Vector3 position)
+    {
         // Front wall
         PlaceWall(
             wall,
@@ -130,16 +140,20 @@ public class Main : Spatial {
         );
     }
 
-    private void PlaceWall(PackedScene wall, Vector3 position, Vector3 rotation) {
+    private void PlaceWall(PackedScene wall, Vector3 position, Vector3 rotation)
+    {
         Boolean place = true;
 
-        for (Int32 i = 0; i < walls.Count; i++) {
-            if (walls[i] == new Vector2(position.x, position.z)) {
+        for (Int32 i = 0; i < walls.Count; i++)
+        {
+            if (walls[i] == new Vector2(position.x, position.z))
+            {
                 place = false;
             }
         }
 
-        if (place) {
+        if (place)
+        {
             StaticBody wallInstance = wall.Instance<StaticBody>();
             wallInstance.Translation = position;
             wallInstance.RotationDegrees = rotation;
@@ -151,7 +165,8 @@ public class Main : Spatial {
         }
     }
 
-    enum Direction {
+    enum Direction
+    {
         Left,
         Right,
         Forward

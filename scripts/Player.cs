@@ -1,7 +1,8 @@
 using Godot;
 using System;
 
-public class Player : KinematicBody {
+public class Player : KinematicBody
+{
     [Export] public Int32 Speed;
     [Export] public Single JoystickCameraSensitivity;
     [Export] public Single MouseCameraSensitivity;
@@ -16,7 +17,8 @@ public class Player : KinematicBody {
     private TouchScreenButton leftButton;
     private TouchScreenButton rightButton;
 
-    public override void _Ready() {
+    public override void _Ready()
+    {
         healthMeter = GetNode<ColorRect>("../CanvasLayer/Health");
         rayCast = GetNode<RayCast>("Pivot/Camera/RayCast");
         health = 1f;
@@ -30,23 +32,32 @@ public class Player : KinematicBody {
         Input.MouseMode = Input.MouseModeEnum.Captured;
     }
 
-    public override void _Process(Single delta) {
+    public override void _Process(Single delta)
+    {
         healthMeter.RectScale = new Vector2(health, 1f);
     }
 
-    public override void _PhysicsProcess(Single delta) {
-        if (Input.IsActionJustPressed("quit")) {
-            if (Input.MouseMode == Input.MouseModeEnum.Captured) {
+    public override void _PhysicsProcess(Single delta)
+    {
+        if (Input.IsActionJustPressed("quit"))
+        {
+            if (Input.MouseMode == Input.MouseModeEnum.Captured)
+            {
                 Input.MouseMode = Input.MouseModeEnum.Visible;
-            } else {
+            }
+            else
+            {
                 Input.MouseMode = Input.MouseModeEnum.Captured;
             }
         }
 
-        if (Input.IsActionJustPressed("interact")) {
-            Node node = (Node) rayCast.GetCollider();
-            if (node != null) {
-                if (node.Name == "Button") {
+        if (Input.IsActionJustPressed("interact"))
+        {
+            Node node = (Node)rayCast.GetCollider();
+            if (node != null)
+            {
+                if (node.Name == "Button")
+                {
                     GetTree().ChangeScene("res://scenes/win.tscn");
                 }
             }
@@ -57,16 +68,20 @@ public class Player : KinematicBody {
         velocity.x = Input.GetActionStrength("right") - Input.GetActionStrength("left");
         velocity.z = Input.GetActionStrength("backward") - Input.GetActionStrength("forward");
 
-        if (upButton.IsPressed()) {
+        if (upButton.IsPressed())
+        {
             velocity.z--;
         }
-        if (downButton.IsPressed()) {
+        if (downButton.IsPressed())
+        {
             velocity.z++;
         }
-        if (leftButton.IsPressed()) {
+        if (leftButton.IsPressed())
+        {
             velocity.x--;
         }
-        if (rightButton.IsPressed()) {
+        if (rightButton.IsPressed())
+        {
             velocity.x++;
         }
 
@@ -80,9 +95,11 @@ public class Player : KinematicBody {
         );
     }
 
-    public override void _UnhandledInput(InputEvent @event) {
-        if (@event is InputEventMouseMotion && Input.MouseMode == Input.MouseModeEnum.Captured) {
-            InputEventMouseMotion mouseMotion = (InputEventMouseMotion) @event;
+    public override void _UnhandledInput(InputEvent @event)
+    {
+        if (@event is InputEventMouseMotion && Input.MouseMode == Input.MouseModeEnum.Captured)
+        {
+            InputEventMouseMotion mouseMotion = (InputEventMouseMotion)@event;
             MoveCamera(
                 -mouseMotion.Relative.y * MouseCameraSensitivity,
                 -mouseMotion.Relative.x * MouseCameraSensitivity
@@ -90,7 +107,8 @@ public class Player : KinematicBody {
         }
     }
 
-    public void MoveCamera(Single xRotation, Single yRotation) {
+    public void MoveCamera(Single xRotation, Single yRotation)
+    {
         RotateY(yRotation);
         pivot.RotateX(xRotation);
 

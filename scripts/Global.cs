@@ -1,13 +1,16 @@
 using Godot;
 using System;
 
-public class Global : Node {
-    public override void _Ready() {
+public class Global : Node
+{
+    public override void _Ready()
+    {
         OS.WindowMaximized = true;
         GD.Randomize();
     }
 
-    public static SpatialMaterial RandomColor() {
+    public static SpatialMaterial RandomColor()
+    {
         String[] colors = new String[] {
             "res://resources/sweetie_16/color_02.tres",
             "res://resources/sweetie_16/color_03.tres",
