@@ -5,6 +5,7 @@
 [sub_resource type="CapsuleShape" id=1]
 
 [node name="Player" type="KinematicBody"]
+transform = Transform( 1, 0, 0, 0, 2, 0, 0, 0, 1, 0, 0, 0 )
 script = ExtResource( 1 )
 Speed = 10
 JoystickCameraSensitivity = 0.07
