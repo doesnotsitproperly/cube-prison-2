@@ -3,9 +3,12 @@ using System;
 
 public class Player : KinematicBody
 {
-    [Export] public Int32 Speed;
-    [Export] public Single JoystickCameraSensitivity;
-    [Export] public Single MouseCameraSensitivity;
+    [Export]
+    public Int32 Speed;
+    [Export]
+    public Single JoystickCameraSensitivity;
+    [Export]
+    public Single MouseCameraSensitivity;
 
     private ColorRect healthMeter;
     private RayCast rayCast;
