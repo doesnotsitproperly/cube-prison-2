@@ -29,8 +29,12 @@ public class MainMenu : Node2D
 
     public void OnLicensesButtonPressed()
     {
-        Error error = OS.ShellOpen(OS.GetExecutablePath().GetBaseDir() + "/THIRD_PARTY_LICENSES.txt");
-        if (error != Error.Ok)
+        String filePath = OS.GetExecutablePath().GetBaseDir() + "/THIRD_PARTY_LICENSES.txt";
+        if (new File().FileExists(filePath))
+        {
+            OS.ShellOpen(filePath);
+        }
+        else
         {
             OS.ShellOpen("https://github.com/doesnotsitproperly/cube-prison-2/blob/main/THIRD_PARTY_LICENSES.txt");
         }
