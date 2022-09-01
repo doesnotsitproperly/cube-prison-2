@@ -5,8 +5,18 @@ public class Global : Node
 {
     public override void _Ready()
     {
-        OS.WindowMaximized = true;
         GD.Randomize();
+
+        if (OS.GetName() == "HTML5")
+        {
+            InputEventKey escape = new InputEventKey();
+            escape.PhysicalScancode = (UInt32)KeyList.Escape;
+            InputMap.ActionEraseEvent("quit", escape);
+
+            InputEventKey quoteLeft = new InputEventKey();
+            quoteLeft.PhysicalScancode = (UInt32)KeyList.Quoteleft;
+            InputMap.ActionAddEvent("quit", quoteLeft);
+        }
     }
 
     public static SpatialMaterial RandomColor()
