@@ -22,15 +22,15 @@ public class Player : KinematicBody
 
     public override void _Ready()
     {
-        healthMeter = GetNode<ColorRect>("../CanvasLayer/Health");
+        healthMeter = GetNode<ColorRect>("../GUI/Health");
         rayCast = GetNode<RayCast>("Pivot/Camera/RayCast");
         health = 1f;
         pivot = GetNode<Spatial>("Pivot");
 
-        upButton = GetNode<TouchScreenButton>("../CanvasLayer/TouchScreenButtons/TouchScreenButtonUp");
-        downButton = GetNode<TouchScreenButton>("../CanvasLayer/TouchScreenButtons/TouchScreenButtonDown");
-        leftButton = GetNode<TouchScreenButton>("../CanvasLayer/TouchScreenButtons/TouchScreenButtonLeft");
-        rightButton = GetNode<TouchScreenButton>("../CanvasLayer/TouchScreenButtons/TouchScreenButtonRight");
+        upButton = GetNode<TouchScreenButton>("../GUI/TouchScreenButtons/TouchScreenButtonUp");
+        downButton = GetNode<TouchScreenButton>("../GUI/TouchScreenButtons/TouchScreenButtonDown");
+        leftButton = GetNode<TouchScreenButton>("../GUI/TouchScreenButtons/TouchScreenButtonLeft");
+        rightButton = GetNode<TouchScreenButton>("../GUI/TouchScreenButtons/TouchScreenButtonRight");
 
         Input.MouseMode = Input.MouseModeEnum.Captured;
     }
