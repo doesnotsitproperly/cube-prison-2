@@ -30,7 +30,7 @@ public class Main : Spatial
         AddChild(firstDoorway);
         PlaceWalls(wallScene, roomOrigins[0]);
 
-        for (Byte i = 1; i <= 7; i++)
+        for (Byte i = 1; i < roomOrigins.Length; i++)
         {
             Spatial room = roomScenes[GD.Randi() % roomScenes.Length].Instance<Spatial>();
             room.Translation = roomOrigins[i - 1];
