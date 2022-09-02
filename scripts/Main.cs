@@ -149,6 +149,7 @@ public class Main : Spatial
             if (walls[i] == new Vector2(position.x, position.z))
             {
                 place = false;
+                break;
             }
         }
 
