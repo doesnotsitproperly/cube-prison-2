@@ -35,11 +35,6 @@ public class Player : KinematicBody
         Input.MouseMode = Input.MouseModeEnum.Captured;
     }
 
-    public override void _Process(Single delta)
-    {
-        healthMeter.RectScale = new Vector2(health, 1f);
-    }
-
     public override void _PhysicsProcess(Single delta)
     {
         if (Input.IsActionJustPressed("quit"))
@@ -66,10 +61,11 @@ public class Player : KinematicBody
             }
         }
 
-        Vector3 velocity = new Vector3();
-
-        velocity.x = Input.GetActionStrength("right") - Input.GetActionStrength("left");
-        velocity.z = Input.GetActionStrength("backward") - Input.GetActionStrength("forward");
+        Vector3 velocity = new Vector3(
+            Input.GetActionStrength("right") - Input.GetActionStrength("left"),
+            0f,
+            Input.GetActionStrength("backward") - Input.GetActionStrength("forward")
+        );
 
         if (upButton.IsPressed())
         {
@@ -88,9 +84,7 @@ public class Player : KinematicBody
             velocity.x++;
         }
 
-        velocity = velocity.Rotated(Vector3.Up, Rotation.y);
-        velocity = velocity.Normalized() * Speed;
-        velocity = MoveAndSlide(velocity, Vector3.Up);
+        MoveAndSlide(velocity.Rotated(Vector3.Up, Rotation.y).Normalized() * Speed, Vector3.Up);
 
         MoveCamera(
             -(Input.GetActionStrength("camera_down") - Input.GetActionStrength("camera_up")) * JoystickCameraSensitivity,

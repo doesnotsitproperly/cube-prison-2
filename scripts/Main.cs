@@ -20,13 +20,9 @@ public class Main : Spatial
         PackedScene doorwayScene = ResourceLoader.Load<PackedScene>("res://scenes/doorway.tscn");
         wallScene = ResourceLoader.Load<PackedScene>("res://scenes/wall.tscn");
 
-        roomOrigins[0] = Vector3.Zero;
+        roomOrigins[0] = new Vector3();
         Spatial firstDoorway = doorwayScene.Instance<Spatial>();
-        firstDoorway.Translation = new Vector3(
-            roomOrigins[0].x,
-            roomOrigins[0].y,
-            roomOrigins[0].z - 17f
-        );
+        firstDoorway.Translation = new Vector3(roomOrigins[0].x, roomOrigins[0].y, roomOrigins[0].z - 17f);
         walls.Add(new Vector2(firstDoorway.Translation.x, firstDoorway.Translation.z));
         AddChild(firstDoorway);
         PlaceWalls(roomOrigins[0]);
@@ -48,11 +44,7 @@ public class Main : Spatial
 
                     translation.x -= 34f;
 
-                    doorway.Translation = new Vector3(
-                        translation.x + 17f,
-                        translation.y,
-                        translation.z
-                    );
+                    doorway.Translation = new Vector3(translation.x + 17f, translation.y, translation.z );
                     doorway.RotationDegrees = new Vector3(0f, 90f, 0f);
                     walls.Add(new Vector2(doorway.Translation.x, doorway.Translation.z));
 
@@ -65,11 +57,7 @@ public class Main : Spatial
 
                     translation.x += 34f;
 
-                    doorway.Translation = new Vector3(
-                        translation.x - 17f,
-                        translation.y,
-                        translation.z
-                    );
+                    doorway.Translation = new Vector3( translation.x - 17f, translation.y, translation.z);
                     doorway.RotationDegrees = new Vector3(0f, 90f, 0f);
                     walls.Add(new Vector2(doorway.Translation.x, doorway.Translation.z));
 
@@ -83,11 +71,7 @@ public class Main : Spatial
 
                 translation.z -= 34f;
 
-                doorway.Translation = new Vector3(
-                    translation.x,
-                    translation.y,
-                    translation.z + 17f
-                );
+                doorway.Translation = new Vector3(translation.x, translation.y, translation.z + 17f);
                 walls.Add(new Vector2(doorway.Translation.x, doorway.Translation.z));
 
                 PlaceWalls(room.Translation);
@@ -104,14 +88,8 @@ public class Main : Spatial
 
         wallScene.Dispose();
 
-        Spatial button = ResourceLoader
-            .Load<PackedScene>("res://scenes/button.tscn")
-            .Instance<Spatial>();
-        button.Translation = new Vector3(
-            roomOrigins[7].x,
-            roomOrigins[7].y + 5f,
-            roomOrigins[7].z - 16.1f
-        );
+        Spatial button = ResourceLoader.Load<PackedScene>("res://scenes/button.tscn").Instance<Spatial>();
+        button.Translation = new Vector3(roomOrigins[7].x, roomOrigins[7].y + 5f, roomOrigins[7].z - 16.1f);
         AddChild(button);
     }
 
@@ -134,35 +112,20 @@ public class Main : Spatial
             wallInstance.Translation = position;
             wallInstance.RotationDegrees = rotation;
             AddChild(wallInstance);
-            walls.Add(new Vector2(
-                wallInstance.Translation.x,
-                wallInstance.Translation.z
-            ));
+            walls.Add(new Vector2(wallInstance.Translation.x, wallInstance.Translation.z));
         }
     }
 
     private void PlaceWalls(Vector3 position)
     {
         // Front wall
-        PlaceWall(
-            new Vector3(position.x, position.y + 9f, position.z - 17f),
-            new Vector3(90f, 0f, 0f)
-        );
+        PlaceWall(new Vector3(position.x, position.y + 9f, position.z - 17f), new Vector3(90f, 0f, 0f));
         // Back wall
-        PlaceWall(
-            new Vector3(position.x, position.y + 9f, position.z + 17f),
-            new Vector3(90f, 0f, 0f)
-        );
+        PlaceWall(new Vector3(position.x, position.y + 9f, position.z + 17f), new Vector3(90f, 0f, 0f));
         // Left wall
-        PlaceWall(
-            new Vector3(position.x - 17f, position.y + 9f, position.z),
-            new Vector3(90f, 90f, 0f)
-        );
+        PlaceWall(new Vector3(position.x - 17f, position.y + 9f, position.z), new Vector3(90f, 90f, 0f));
         // Right wall
-        PlaceWall(
-            new Vector3(position.x + 17f, position.y + 9f, position.z),
-            new Vector3(90f, 90f, 0f)
-        );
+        PlaceWall(new Vector3(position.x + 17f, position.y + 9f, position.z), new Vector3(90f, 90f, 0f));
     }
 
     enum Direction
