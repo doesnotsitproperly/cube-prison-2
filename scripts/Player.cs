@@ -61,11 +61,7 @@ public class Player : KinematicBody
             }
         }
 
-        Vector3 velocity = new Vector3(
-            Input.GetActionStrength("right") - Input.GetActionStrength("left"),
-            0f,
-            Input.GetActionStrength("backward") - Input.GetActionStrength("forward")
-        );
+        Vector3 velocity = new Vector3(Input.GetActionStrength("right") - Input.GetActionStrength("left"), 0f, Input.GetActionStrength("backward") - Input.GetActionStrength("forward"));
 
         if (upButton.IsPressed())
         {
@@ -86,10 +82,7 @@ public class Player : KinematicBody
 
         MoveAndSlide(velocity.Rotated(Vector3.Up, Rotation.y).Normalized() * Speed, Vector3.Up);
 
-        MoveCamera(
-            -(Input.GetActionStrength("camera_down") - Input.GetActionStrength("camera_up")) * JoystickCameraSensitivity,
-            -(Input.GetActionStrength("camera_right") - Input.GetActionStrength("camera_left")) * JoystickCameraSensitivity
-        );
+        MoveCamera(new Vector2(Input.GetActionStrength("camera_down") - Input.GetActionStrength("camera_up"), Input.GetActionStrength("camera_right") - Input.GetActionStrength("camera_left")) * JoystickCameraSensitivity * -1);
     }
 
     public override void _UnhandledInput(InputEvent @event)
@@ -97,17 +90,14 @@ public class Player : KinematicBody
         if (@event is InputEventMouseMotion && Input.MouseMode == Input.MouseModeEnum.Captured)
         {
             InputEventMouseMotion mouseMotion = (InputEventMouseMotion)@event;
-            MoveCamera(
-                -mouseMotion.Relative.y * MouseCameraSensitivity,
-                -mouseMotion.Relative.x * MouseCameraSensitivity
-            );
+            MoveCamera(new Vector2(-mouseMotion.Relative.y, -mouseMotion.Relative.x) * MouseCameraSensitivity * -1);
         }
     }
 
-    public void MoveCamera(Single xRotation, Single yRotation)
+    public void MoveCamera(Vector2 cameraRotation)
     {
-        RotateY(yRotation);
-        pivot.RotateX(xRotation);
+        RotateY(cameraRotation.y);
+        pivot.RotateX(cameraRotation.x);
 
         pivot.Rotation = new Vector3(
             Mathf.Clamp(pivot.Rotation.x, -1.2f, 1.2f),
