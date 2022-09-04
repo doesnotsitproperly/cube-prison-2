@@ -164,6 +164,10 @@ camera_right={
  ]
 }
 
+[mono]
+
+project/assembly_name="Cube Prison 2"
+
 [physics]
 
 common/enable_pause_aware_picking=true
