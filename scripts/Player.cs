@@ -90,7 +90,7 @@ public class Player : KinematicBody
         if (@event is InputEventMouseMotion && Input.MouseMode == Input.MouseModeEnum.Captured)
         {
             InputEventMouseMotion mouseMotion = (InputEventMouseMotion)@event;
-            MoveCamera(new Vector2(-mouseMotion.Relative.y, -mouseMotion.Relative.x) * MouseCameraSensitivity * -1);
+            MoveCamera(new Vector2(mouseMotion.Relative.y, mouseMotion.Relative.x) * MouseCameraSensitivity * -1);
         }
     }
 
