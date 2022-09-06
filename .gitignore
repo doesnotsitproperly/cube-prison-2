@@ -2,3 +2,5 @@
 .mono/
 audios/
 obj/
+
+builds/*/*
