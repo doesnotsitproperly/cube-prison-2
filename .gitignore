@@ -4,3 +4,5 @@ audios/
 obj/
 
 builds/*/*
+
+settings.cfg

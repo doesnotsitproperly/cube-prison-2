@@ -17,6 +17,13 @@ public class Global : Node
             quoteLeft.PhysicalScancode = (UInt32)KeyList.Quoteleft;
             InputMap.ActionAddEvent("quit", quoteLeft);
         }
+        else
+        {
+            File file = new File();
+            file.Open("res://settings.cfg", File.ModeFlags.Write);
+            file.StoreString("; KeyList: https://docs.godotengine.org/en/stable/classes/class_%40globalscope.html#enum-globalscope-keylist" + System.Environment.NewLine);
+            file.Close();
+        }
     }
 
     public static SpatialMaterial RandomColor()
