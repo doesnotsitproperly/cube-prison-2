@@ -25,7 +25,7 @@ public class Global : Node
             if (new File().FileExists("res://settings.cfg"))
             {
                 config.Load("res://settings.cfg");
-                Volume = (Single) config.GetValue("settings", "volume", 0.2f);
+                Volume = (Single)config.GetValue("settings", "volume", 0.2f);
             }
             else
             {

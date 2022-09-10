@@ -44,7 +44,7 @@ public class Main : Spatial
 
                     translation.x -= 34f;
 
-                    doorway.Translation = new Vector3(translation.x + 17f, translation.y, translation.z );
+                    doorway.Translation = new Vector3(translation.x + 17f, translation.y, translation.z);
                     doorway.RotationDegrees = new Vector3(0f, 90f, 0f);
                     walls.Add(new Vector2(doorway.Translation.x, doorway.Translation.z));
 
@@ -57,7 +57,7 @@ public class Main : Spatial
 
                     translation.x += 34f;
 
-                    doorway.Translation = new Vector3( translation.x - 17f, translation.y, translation.z);
+                    doorway.Translation = new Vector3(translation.x - 17f, translation.y, translation.z);
                     doorway.RotationDegrees = new Vector3(0f, 90f, 0f);
                     walls.Add(new Vector2(doorway.Translation.x, doorway.Translation.z));
 
