@@ -3,6 +3,8 @@ using System;
 
 public class Global : Node
 {
+    public static Single Volume;
+
     public override void _Ready()
     {
         GD.Randomize();
@@ -19,10 +21,18 @@ public class Global : Node
         }
         else
         {
-            File file = new File();
-            file.Open("res://settings.cfg", File.ModeFlags.Write);
-            file.StoreString("; KeyList: https://docs.godotengine.org/en/stable/classes/class_%40globalscope.html#enum-globalscope-keylist" + System.Environment.NewLine);
-            file.Close();
+            ConfigFile config = new ConfigFile();
+            if (new File().FileExists("res://settings.cfg"))
+            {
+                config.Load("res://settings.cfg");
+                Volume = (Single) config.GetValue("settings", "volume", 0.2f);
+            }
+            else
+            {
+                config.SetValue("settings", "volume", 0.2f);
+                config.Save("res://settings.cfg");
+                Volume = 0.2f;
+            }
         }
     }
 
