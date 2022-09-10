@@ -99,10 +99,6 @@ public class Player : KinematicBody
         RotateY(cameraRotation.y);
         pivot.RotateX(cameraRotation.x);
 
-        pivot.Rotation = new Vector3(
-            Mathf.Clamp(pivot.Rotation.x, -1.2f, 1.2f),
-            pivot.Rotation.y,
-            pivot.Rotation.z
-        );
+        pivot.Rotation = new Vector3(Mathf.Clamp(pivot.Rotation.x, -1.2f, 1.2f), pivot.Rotation.y, pivot.Rotation.z);
     }
 }
