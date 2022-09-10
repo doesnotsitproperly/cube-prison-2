@@ -1,4 +1,6 @@
 .import/
 .mono/
-audios/
+builds/
 obj/
+
+settings.cfg
