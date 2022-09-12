@@ -3,6 +3,7 @@ using System;
 
 public class Global : Node
 {
+    public static PlatformButtons Buttons;
     public static Single Volume;
 
     public override void _Ready()
@@ -53,5 +54,12 @@ public class Global : Node
             "res://resources/sweetie_16/color_13.tres"
         };
         return ResourceLoader.Load<SpatialMaterial>(colors[GD.Randi() % colors.Length]);
+    }
+
+    public enum PlatformButtons
+    {
+        Nintendo,
+        PlayStation,
+        Xbox
     }
 }
