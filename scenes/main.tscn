@@ -82,6 +82,11 @@ normal = ExtResource( 5 )
 position = Vector2( 8, 0 )
 normal = ExtResource( 5 )
 
-[node name="Pointer" type="Sprite" parent="GUI"]
-position = Vector2( 640, 360 )
+[node name="Control" type="Control" parent="GUI"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+
+[node name="Pointer" type="Sprite" parent="GUI/Control"]
 texture = ExtResource( 8 )
