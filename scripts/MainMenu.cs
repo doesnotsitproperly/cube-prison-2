@@ -18,9 +18,7 @@ public class MainMenu : Node2D
         sprite = GetNode<Sprite>("Sprite");
 
         if (OS.GetName() == "HTML5")
-        {
             exit.QueueFree();
-        }
     }
 
     public override void _Process(Single delta)
@@ -31,17 +29,11 @@ public class MainMenu : Node2D
     public void OnStartButtonPressed()
     {
         if (checkBoxNintendo.Pressed)
-        {
             Global.Buttons = Global.PlatformButtons.Nintendo;
-        }
         else if (checkBoxPlayStation.Pressed)
-        {
             Global.Buttons = Global.PlatformButtons.PlayStation;
-        }
         else
-        {
             Global.Buttons = Global.PlatformButtons.Xbox;
-        }
 
         GetTree().ChangeScene("res://scenes/main.tscn");
     }
@@ -50,13 +42,9 @@ public class MainMenu : Node2D
     {
         String filePath = OS.GetExecutablePath().GetBaseDir() + "/THIRD_PARTY_LICENSES.txt";
         if (new File().FileExists(filePath))
-        {
             OS.ShellOpen(filePath);
-        }
         else
-        {
             OS.ShellOpen("https://github.com/doesnotsitproperly/cube-prison-2/blob/main/THIRD_PARTY_LICENSES.txt");
-        }
     }
 
     public void OnExitButtonPressed()

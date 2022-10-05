@@ -40,45 +40,29 @@ public class Player : KinematicBody
         if (Input.IsActionJustPressed("quit"))
         {
             if (Input.MouseMode == Input.MouseModeEnum.Captured)
-            {
                 Input.MouseMode = Input.MouseModeEnum.Visible;
-            }
             else
-            {
                 Input.MouseMode = Input.MouseModeEnum.Captured;
-            }
         }
 
         if (Input.IsActionJustPressed("interact"))
         {
             Node node = (Node)rayCast.GetCollider();
             if (node != null)
-            {
                 if (node.Name == "Button")
-                {
                     GetTree().ChangeScene("res://scenes/win.tscn");
-                }
-            }
         }
 
         Vector3 velocity = new Vector3(Input.GetActionStrength("right") - Input.GetActionStrength("left"), 0f, Input.GetActionStrength("backward") - Input.GetActionStrength("forward"));
 
         if (upButton.IsPressed())
-        {
             velocity.z--;
-        }
         if (downButton.IsPressed())
-        {
             velocity.z++;
-        }
         if (leftButton.IsPressed())
-        {
             velocity.x--;
-        }
         if (rightButton.IsPressed())
-        {
             velocity.x++;
-        }
 
         MoveAndSlide(velocity.Rotated(Vector3.Up, Rotation.y).Normalized() * Speed, Vector3.Up);
 
