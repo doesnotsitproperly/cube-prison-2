@@ -23,15 +23,15 @@ public class Global : Node
         else
         {
             ConfigFile config = new ConfigFile();
-            if (new File().FileExists("res://settings.cfg"))
+            if (new File().FileExists("user://settings.cfg"))
             {
-                config.Load("res://settings.cfg");
+                config.Load("user://settings.cfg");
                 Volume = (Single)config.GetValue("settings", "volume", 0.2f);
             }
             else
             {
                 config.SetValue("settings", "volume", 0.2f);
-                config.Save("res://settings.cfg");
+                config.Save("user://settings.cfg");
                 Volume = 0.2f;
             }
         }
